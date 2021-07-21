@@ -8,14 +8,14 @@
       "type": "image/x-icon"
     },
     {
-      "src": "logos/og-dao.png",
+      "src": "logos/192.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "logos/og-dao.png",
+      "src": "logos/512.png",
       "type": "image/png",
-      "sizes": "310x310"
+      "sizes": "512x512"
     }
   ],
   "start_url": ".",
