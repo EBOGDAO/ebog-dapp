@@ -11,7 +11,7 @@ class Navigation extends Component {
             <Nav.Link href="/">
               <img
                 className="logo"
-                src="logos/og-dao-v3.png"
+                src="logos/og-dao-v1.png"
                 title="OG DAO"
                 alt="OG DAO"
               />
