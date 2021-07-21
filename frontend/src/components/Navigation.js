@@ -1,25 +1,62 @@
-import React from "react";
-import { Navbar, Container, Nav } from "react-bootstrap";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faEthereum } from '@fortawesome/free-brands-svg-icons'
-import { style } from "../stylesheets/Dapp.scss";
+import React, { Component } from "react";
+import { Navbar, Container, Nav, Button } from "react-bootstrap";
+import "../stylesheets/Dapp.scss";
 
-export function Navigation() {
-  return (
-    <Navbar collapseOnSelect expand="lg" className="ebog-nav">
-      <Container>
-        <Navbar.Brand href="/" className="ebog-nav"><img src="og-circle-thick.png" width="75" height/></Navbar.Brand>
-        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-        <Navbar.Collapse id="responsive-navbar-nav">
-          <Nav className="me-auto">
-            <Nav.Link href="/" style={{color:'white', fontWeight: 'bold'}} className="p-4">Home</Nav.Link>
-            <Nav.Link href="/agreement" style={{color:'white', fontWeight: 'bold'}} className="p-4">Agreement</Nav.Link>
-          </Nav>
-          <Nav className="ml-auto">
-            <Nav.Link href="/" style={{color:'white', fontWeight: 'bold'}} className="p-4"><FontAwesomeIcon icon={faEthereum} style={{color: '#1B9AAA'}} /> Connected Account</Nav.Link>
-          </Nav>
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
-  );
+class Navigation extends Component {
+  render() {
+    return (
+      <Navbar className="sticky-top" collapseOnSelect expand="md">
+        <Container>
+          <Navbar.Brand>
+            <Nav.Link href="/">
+              <img
+                className="logo"
+                src="logos/og-dao-v3.png"
+                title="OG DAO"
+                alt="OG DAO"
+              />
+            </Nav.Link>
+          </Navbar.Brand>
+          <Navbar.Toggle className="navbar-light"/>
+          <Navbar.Collapse>
+            <Nav className="me-auto">
+              <Nav.Item>
+                <Nav.Link className="px-4" href="/">
+                  Home
+                </Nav.Link>
+              </Nav.Item>
+              <Nav.Item>
+                <Nav.Link className="px-4" href="/agreement">
+                  Agreement
+                </Nav.Link>
+              </Nav.Item>
+            </Nav>
+            <Navbar.Brand className="ml-auto">
+              <Nav.Link href="/">
+                {this.props.selectedAddress ? (
+                  <Button
+                    className="py-2 px-4"
+                    variant="info"
+                    title={this.props.selectedAddress}
+                  >
+                    {this.props.minifyHash(this.props.selectedAddress)}
+                  </Button>
+                ) : (
+                  <Button
+                    className="py-2 px-4"
+                    variant="info"
+                    onClick={this.props.connectWallet}
+                  >
+                    Connect Wallet
+                  </Button>
+                )}
+              </Nav.Link>
+            </Navbar.Brand>
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
+    )
+  }
 }
+
+export default Navigation;

@@ -25,9 +25,7 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 import "hardhat/console.sol";
 
 contract EBOGAgreement is AccessControl, Ownable {
-
-    uint256 public totalAccounts = 0;
-
+    uint256   public totalAccounts = 0;
     address[] public optInAccounts;
     address[] public optOutAccounts;
 
@@ -66,7 +64,7 @@ contract EBOGAgreement is AccessControl, Ownable {
 
     function getAddressStatus(address _address) public view returns (string memory) {
         require(isMember(msg.sender), "Restricted to members.");
-        
+
         if (optIn[_address]) {
             return "This address voted to Opt In";
         } else if (optOut[_address]) {
@@ -101,7 +99,7 @@ contract EBOGAgreement is AccessControl, Ownable {
     }
 
     // @dev Remove oneself as a member of the community.
-    function leaveCommunity() public virtual { // Roles will check membership.
+    function leaveCommunity() public virtual {
         renounceRole('EBOG', msg.sender);
     }
 

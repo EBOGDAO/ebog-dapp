@@ -1,20 +1,78 @@
-$greenSheen : #89B6A5;
-$englishViolet : #4c3b4d;
-$aeroBlue : #c9eddc;
-$morningBlue : #82968C;
-$nickel : #6A706E;
-$white : #FFFFFF;
+$baby-blue: #1B9AAA;
+$black: #050505;
+$white : #fff;
 
-.navbar.ebog-nav {
-    background-color: #050505;
-    height:  100px;
+#dapp {
+  min-height: calc(100vh - 250px);
 }
 
-.navbar.ebog-foot {
-    background-color: #050505;
-    height:  75px;
+.navbar {
+  background-color: $black;
+}
+
+.logo {
+  width: 60px;
+  height: auto;
 }
 
 .nav-link {
-    color: $white;
+  font-weight: bold;
+  color: $white !important;
+  text-transform: uppercase;
+}
+
+a {
+  text-decoration: none !important;
+}
+
+button.navbar-toggler {
+  background-color: $white;
+}
+
+.navbar-toggler:focus,
+.navbar-toggler:active,
+.navbar-toggler-icon:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.agreement-text {
+  line-height: 2;
+  font-family: "American Typewriter", serif;
+}
+
+.footer {
+  height: 150px;
+  vertical-align: center;
+  background-color: $black;
+}
+
+.footer-text {
+  color: $white;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.social-icon {
+  color: $baby-blue;
+}
+
+.social-icon:hover {
+  color: $white;
+}
+
+.ethereum-icon {
+  font-size: 36px;
+}
+
+@media (max-width: 547px) {
+  a.social-icon {
+    padding-right: 0.5rem !important;
+  }
+}
+
+@media (max-width: 767px) {
+  .agreement-text {
+    line-height: 1.75;
+  }
 }

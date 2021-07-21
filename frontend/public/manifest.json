@@ -1,6 +1,6 @@
 {
-  "short_name": "Hardhat React Dapp",
-  "name": "Hardhat Create React Dapp Sample",
+  "short_name": "OG DAPP",
+  "name": "OG DAO",
   "icons": [
     {
       "src": "favicon.ico",
@@ -8,12 +8,12 @@
       "type": "image/x-icon"
     },
     {
-      "src": "logo192.png",
+      "src": "logos/og-dao.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "logo310.png",
+      "src": "logos/og-dao.png",
       "type": "image/png",
       "sizes": "310x310"
     }
