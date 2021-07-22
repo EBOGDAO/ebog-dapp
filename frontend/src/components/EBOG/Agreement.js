@@ -5,7 +5,7 @@ import "../../stylesheets/Dapp.scss";
 class Agreement extends Component {
   render() {
     return (
-      <Container className="mb-5 p-4">
+      <Container className="mb-5 p-4 letter">
         <Row>
           <Col md={{ span: 10, offset: 1 }}>
             <h1 className="agreement-text" style={{ fontWeight: "bold" }}>
