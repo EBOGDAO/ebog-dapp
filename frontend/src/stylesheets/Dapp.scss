@@ -41,8 +41,8 @@ button.navbar-toggler {
   font-family: "American Typewriter", serif;
 }
 
-.letter {
-  background: #fff;
+.paper-stack {
+  background: #f5f1e3;
   box-shadow: 0 0 10px rgba(0,0,0,0.3);
   margin: 26px auto 0;
   max-width: 550px;
@@ -51,22 +51,26 @@ button.navbar-toggler {
   position: relative;
   width: 80%;
 }
-.letter:before, .letter:after {
+
+.paper-stack:before,
+.paper-stack:after {
   content: "";
   height: 98%;
   position: absolute;
   width: 100%;
   z-index: -1;
 }
-.letter:before {
-  background: #fafafa;
+
+.paper-stack:before {
+  background: #f5f1e3;
   box-shadow: 0 0 8px rgba(0,0,0,0.2);
   left: -5px;
   top: 4px;
   transform: rotate(-2.5deg);
 }
-.letter:after {
-  background: #f6f6f6;
+
+.paper-stack:after {
+  background: #f5f1e3;
   box-shadow: 0 0 3px rgba(0,0,0,0.2);
   right: -3px;
   top: 1px;
@@ -108,4 +112,3 @@ button.navbar-toggler {
     line-height: 1.75;
   }
 }
-

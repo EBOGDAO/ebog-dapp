@@ -3,7 +3,7 @@ import { ethers } from "ethers";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 // Contracts
 import TokenArtifact from "../contracts/Token.json";
-import EBOGAgreementArtifact from "../contracts/EBOGAgreement.json";
+import AgreementArtifact from "../contracts/Agreement.json";
 import contractAddress from "../contracts/contract-address.json";
 // Components
 import { NoWalletDetected } from "./NoWalletDetected";
@@ -11,10 +11,9 @@ import { ConnectWallet } from "./ConnectWallet";
 import { Loading } from "./Loading";
 import { TransactionErrorMessage } from "./TransactionErrorMessage";
 import { WaitingForTransactionMessage } from "./WaitingForTransactionMessage";
-// import { Transfer } from "./Transfer";
 import Navigation from "./Navigation";
 import Home from "./Home";
-import Agreement from "./EBOG/Agreement";
+import Agreement from "./DAO/Agreement";
 import Footer from "./Footer";
 // STYLESHEETS
 import "../stylesheets/Dapp.scss";
@@ -55,8 +54,8 @@ export class Dapp extends React.Component {
       transactionError: undefined,
       networkError: undefined,
       totalAccounts: undefined,
-      optInAccounts: [],
-      optOutAccounts: []
+      optedInAccounts: [],
+      optedOutAccounts: []
     };
 
     this.state = this.initialState;
@@ -91,7 +90,7 @@ export class Dapp extends React.Component {
   _initialize(userAddress) {
     // We first store the user's address in the component's state
     this.setState({
-      selectedAddress: userAddress,
+      selectedAddress: ethers.utils.getAddress(userAddress),
     });
 
     // Then, we initialize ethers, fetch the token's data, and start polling
@@ -117,8 +116,8 @@ export class Dapp extends React.Component {
     );
 
     this._agreement = new ethers.Contract(
-      contractAddress.EBOGAgreement,
-      EBOGAgreementArtifact.abi,
+      contractAddress.Agreement,
+      AgreementArtifact.abi,
       this._provider.getSigner(0)
     );
   }
@@ -131,23 +130,22 @@ export class Dapp extends React.Component {
   }
 
   async _fetchAccounts() {
-    // const adminAddress = await this._agreement.DEFAULT_ADMIN_ROLE();
+    const adminAddress = await this._agreement.owner();
     const totalAccounts = await this._agreement.totalAccounts();
-    const optInAccounts = await this._agreement.fetchOptInAccounts();
-    const optOutAccounts = await this._agreement.fetchOptOutAccounts();
-
-    // console.log(adminAddress)
+    const optedInAccounts = await this._agreement.fetchOptedInAccounts();
+    const optedOutAccounts = await this._agreement.fetchOptedOutAccounts();
 
     this.setState({
-      optInAccounts: optInAccounts,
-      optOutAccounts: optOutAccounts,
+      adminAddress: ethers.utils.getAddress(adminAddress),
+      optedInAccounts: optedInAccounts,
+      optedOutAccounts: optedOutAccounts,
       totalAccounts: totalAccounts.toNumber()
     });
   }
 
   async _addMembers() {
     const provider = new ethers.providers.Web3Provider(window.ethereum);
-    const contract = new ethers.Contract(contractAddress.EBOGAgreement, EBOGAgreementArtifact.abi, provider.getSigner());
+    const contract = new ethers.Contract(contractAddress.Agreement, AgreementArtifact.abi, provider.getSigner());
 
     try {
       const transaction = await contract.addMembers(MEMBERS);
@@ -166,10 +164,10 @@ export class Dapp extends React.Component {
 
   async _optIn() {
     const provider = new ethers.providers.Web3Provider(window.ethereum);
-    const contract = new ethers.Contract(contractAddress.EBOGAgreement, EBOGAgreementArtifact.abi, provider.getSigner());
+    const contract = new ethers.Contract(contractAddress.Agreement, AgreementArtifact.abi, provider.getSigner());
 
     try {
-      const transaction = await contract.optIntoEBOG();
+      const transaction = await contract.optInToDAO();
       this.setState({ txBeingSent: transaction.hash });
 
       await transaction.wait()
@@ -185,10 +183,10 @@ export class Dapp extends React.Component {
 
   async _optOut() {
     const provider = new ethers.providers.Web3Provider(window.ethereum);
-    const contract = new ethers.Contract(contractAddress.EBOGAgreement, EBOGAgreementArtifact.abi, provider.getSigner());
+    const contract = new ethers.Contract(contractAddress.Agreement, AgreementArtifact.abi, provider.getSigner());
 
     try {
-      const transaction = await contract.optOutOfEBOG();
+      const transaction = await contract.optOutOfDAO();
       this.setState({ txBeingSent: transaction.hash });
 
       await transaction.wait()
@@ -362,12 +360,13 @@ export class Dapp extends React.Component {
             </Route>
             <Route path="/agreement">
               <Agreement
+                adminAddress={this.state.adminAddress}
                 addMembers={() => this._addMembers()}
                 minifyHash={this._minifyHash}
                 optIn={() => this._optIn()}
-                optInAccounts={this.state.optInAccounts}
+                optedInAccounts={this.state.optedInAccounts}
                 optOut={() => this._optOut()}
-                optOutAccounts={this.state.optOutAccounts}
+                optedOutAccounts={this.state.optedOutAccounts}
                 selectedAddress={this.state.selectedAddress}
                 totalAccounts={this.state.totalAccounts}
               />

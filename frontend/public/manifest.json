@@ -1,5 +1,5 @@
 {
-  "short_name": "OG DAPP",
+  "short_name": "OG DAO",
   "name": "OG DAO",
   "icons": [
     {
@@ -8,12 +8,12 @@
       "type": "image/x-icon"
     },
     {
-      "src": "logos/192.png",
+      "src": "logos/og-dao-v2.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "logos/512.png",
+      "src": "logos/og-dao-v2.png",
       "type": "image/png",
       "sizes": "512x512"
     }

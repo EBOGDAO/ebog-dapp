@@ -6,17 +6,19 @@ import { NetworkErrorMessage } from "./NetworkErrorMessage";
 
 export function ConnectWallet({ connectWallet, networkError, dismiss }) {
   return (
-    <Container className="mt-5">
-      <Row className="justify-content-md-center">
-        <div className="text-center">
+    <Container>
+      <Row className="justify-content-center">
+        <Col className="my-3 text-center">
           {networkError && (
             <NetworkErrorMessage
               message={networkError}
               dismiss={dismiss}
             />
           )}
-        </div>
-        <Col md={6} className="text-center">
+        </Col>
+      </Row>
+      <Row>
+        <Col className="my-4 text-center">
           <p className="mb-4">Please connect to MetaMask</p>
           <Button
             className="py-2 px-4"

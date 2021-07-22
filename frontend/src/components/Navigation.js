@@ -8,10 +8,10 @@ class Navigation extends Component {
       <Navbar className="sticky-top" collapseOnSelect expand="md">
         <Container>
           <Navbar.Brand>
-            <Nav.Link href="/">
+            <Nav.Link className="disabled" href="/">
               <img
                 className="logo"
-                src="logos/og-dao-v1.png"
+                src="logos/og-dao-v2.png"
                 title="OG DAO"
                 alt="OG DAO"
               />
@@ -21,7 +21,7 @@ class Navigation extends Component {
           <Navbar.Collapse>
             <Nav className="me-auto">
               <Nav.Item>
-                <Nav.Link className="px-4" href="/">
+                <Nav.Link className="px-4 disabled" href="/">
                   Home
                 </Nav.Link>
               </Nav.Item>
