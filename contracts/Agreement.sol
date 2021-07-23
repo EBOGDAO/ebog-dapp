@@ -91,7 +91,7 @@ contract Agreement is AccessControl, Ownable {
 
     // @dev Add a member of the community. Caller must already belong to the community.
     function addMembers(address[] memory accounts) public virtual onlyOwner() {
-      for(uint i=0; i<accounts.length; i++) {
+      for (uint i = 0; i < accounts.length; i++) {
         grantRole("OG", accounts[i]);
       }
     }

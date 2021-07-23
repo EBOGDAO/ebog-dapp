@@ -5,16 +5,13 @@ import "../../stylesheets/Dapp.scss";
 class Agreement extends Component {
   render() {
     return (
-      <div>
-        <Container className="paper-stack my-5 p-4">
+      <Container className="my-5 p-4">
+        <div className="paper-stack">
           <Row>
             <Col md={{ span: 10, offset: 1 }}>
               <h1 className="agreement-text" style={{ fontWeight: "bold" }}>
                 OG DAO Agreement 2021
               </h1>
-              <p>
-                Welcome, <b>{this.props.minifyHash(this.props.selectedAddress)}</b>
-              </p>
             </Col>
           </Row>
           <hr />
@@ -53,81 +50,79 @@ class Agreement extends Component {
               </ol>
             </Col>
           </Row>
-        </Container>
-        <Container className="mt-4 mb-5 p-4">
-          <div className="text-center">
-            <h5>Total: {this.props.totalAccounts}</h5>
-            {this.props.adminAddress === this.props.selectedAddress && (
-              <Button
-                className="my-4 px-3 py-2"
-                variant="warning"
-                disabled={this.props.selectedAddress === undefined}
-                onClick={this.props.addMembers}
-              >
-                Add Members
-              </Button>
-            )}
-          </div>
-          <Row className="my-4" style={{ border: "1px solid #d3d3d3" }}>
-            <Col md={{ span: 4, offset: 1 }} className="text-center mt-4">
-              <table className="table table-bordered my-4">
-                <thead>
-                  <tr>
-                    <th>#</th>
-                    <th>Opted In</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {this.props.optedInAccounts.map((account, index) => {
-                    return (
-                      <tr key={index}>
-                        <td>{index + 1}</td>
-                        <td>{this.props.minifyHash(account)}</td>
-                      </tr>
-                    )
-                  })}
-                </tbody>
-              </table>
-              <Button
-                className="mb-5 px-3 py-2"
-                variant="success"
-                disabled={this.props.selectedAddress === undefined}
-                onClick={this.props.optIn}
-              >
-                Opt In
-              </Button>
-            </Col>
-            <Col md={{ span: 4, offset: 2 }} className="text-center mt-4">
-              <table className="table table-bordered my-4">
-                <thead>
-                  <tr>
-                    <th>#</th>
-                    <th>Opted Out</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {this.props.optedOutAccounts.map((account, index) => {
-                    return (
-                      <tr key={index}>
-                        <td>{index + 1}</td>
-                        <td>{this.props.minifyHash(account)}</td>
-                      </tr>
-                    )
-                  })}
-                </tbody>
-              </table>
-              <Button
-                className="mb-5 px-3 py-2"
-                variant="danger"
-                disabled={this.props.selectedAddress === undefined}
-                onClick={this.props.optOut}
-              >
-                Opt Out
-              </Button>
-            </Col>
-          </Row>
-        </Container>
-      </div>
+        </div>
+        <div className="text-center mt-5 mb-2 p-4">
+          <h5 className="mt-3">Total: {this.props.totalAccounts}</h5>
+          {this.props.adminAddress === this.props.selectedAddress && (
+            <Button
+              className="my-4 px-3 py-2"
+              variant="warning"
+              disabled={this.props.selectedAddress === undefined}
+              onClick={this.props.addMembers}
+            >
+              Add Members
+            </Button>
+          )}
+        </div>
+        <Row className="my-4" style={{ border: "1px solid #d3d3d3" }}>
+          <Col md={{ span: 4, offset: 1 }} className="text-center mt-4">
+            <table className="table table-bordered my-4">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Opted In</th>
+                </tr>
+              </thead>
+              <tbody>
+                {this.props.optedInAccounts.map((account, index) => {
+                  return (
+                    <tr key={index}>
+                      <td>{index + 1}</td>
+                      <td>{this.props.minifyHash(account)}</td>
+                    </tr>
+                  )
+                })}
+              </tbody>
+            </table>
+            <Button
+              className="mt-3 mb-5 px-3 py-2"
+              variant="success"
+              disabled={this.props.selectedAddress === undefined}
+              onClick={this.props.optIn}
+            >
+              Opt In
+            </Button>
+          </Col>
+          <Col md={{ span: 4, offset: 2 }} className="text-center mt-4">
+            <table className="table table-bordered my-4">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Opted Out</th>
+                </tr>
+              </thead>
+              <tbody>
+                {this.props.optedOutAccounts.map((account, index) => {
+                  return (
+                    <tr key={index}>
+                      <td>{index + 1}</td>
+                      <td>{this.props.minifyHash(account)}</td>
+                    </tr>
+                  )
+                })}
+              </tbody>
+            </table>
+            <Button
+              className="mt-3 mb-5 px-3 py-2"
+              variant="danger"
+              disabled={this.props.selectedAddress === undefined}
+              onClick={this.props.optOut}
+            >
+              Opt Out
+            </Button>
+          </Col>
+        </Row>
+      </Container>
     )
   }
 };
