@@ -22,12 +22,7 @@ class Navigation extends Component {
             <Nav className="me-auto">
               <Nav.Item>
                 <Nav.Link className="px-4 disabled" href="/">
-                  Home
-                </Nav.Link>
-              </Nav.Item>
-              <Nav.Item>
-                <Nav.Link className="px-4" href="/agreement">
-                  Agreement
+                  Participation Agreement
                 </Nav.Link>
               </Nav.Item>
             </Nav>
