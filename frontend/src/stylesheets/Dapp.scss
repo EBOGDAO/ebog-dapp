@@ -10,7 +10,8 @@ $white : #fff;
   background-color: $black;
 }
 
-.logo {
+.logo,
+.stamp {
   width: 60px;
   height: auto;
 }
@@ -123,6 +124,11 @@ button.navbar-toggler {
 }
 
 @media (max-width: 767px) {
+  .stamp {
+    display: grid;
+    margin: 0 auto;
+  }
+
   .paper-stack {
     max-width: 550px;
     width: 95%;

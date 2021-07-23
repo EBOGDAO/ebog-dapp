@@ -1,6 +1,7 @@
 import React from "react";
 import { ethers } from "ethers";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { Container } from "react-bootstrap";
 // Contracts
 import TokenArtifact from "../contracts/Token.json";
 import AgreementArtifact from "../contracts/Agreement.json";
@@ -14,6 +15,7 @@ import { WaitingForTransactionMessage } from "./WaitingForTransactionMessage";
 import Navigation from "./Navigation";
 import Home from "./Home";
 import Agreement from "./DAO/Agreement";
+import Member from "./DAO/Member";
 import Footer from "./Footer";
 // STYLESHEETS
 import "../stylesheets/Dapp.scss";
@@ -359,17 +361,23 @@ export class Dapp extends React.Component {
               />
             </Route>
             <Route path="/agreement">
-              <Agreement
-                adminAddress={this.state.adminAddress}
-                addMembers={() => this._addMembers()}
-                minifyHash={this._minifyHash}
-                optIn={() => this._optIn()}
-                optedInAccounts={this.state.optedInAccounts}
-                optOut={() => this._optOut()}
-                optedOutAccounts={this.state.optedOutAccounts}
-                selectedAddress={this.state.selectedAddress}
-                totalAccounts={this.state.totalAccounts}
-              />
+              <Container className="my-4 p-4">
+                <Agreement
+                  minifyHash={this._minifyHash}
+                  optIn={() => this._optIn()}
+                  optOut={() => this._optOut()}
+                  selectedAddress={this.state.selectedAddress}
+                />
+                <Member
+                  addMembers={() => this._addMembers()}
+                  adminAddress={this.state.adminAddress}
+                  minifyHash={this._minifyHash}
+                  optedInAccounts={this.state.optedInAccounts}
+                  optedOutAccounts={this.state.optedOutAccounts}
+                  selectedAddress={this.state.selectedAddress}
+                  totalAccounts={this.state.totalAccounts}
+                />
+              </Container>
             </Route>
           </Switch>
         </div>
