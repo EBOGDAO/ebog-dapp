@@ -51,34 +51,39 @@ class Agreement extends Component {
                 </li>
               </ol>
               <br></br>
-              <h5 className="agreement-text text-center">
-              I, the owner of address {this.props.selectedAddress}:
+              <h5 className="agreement-text text-center" style={{wordBreak: 'break-all' }}>
+                I, the owner of address {this.props.selectedAddress}:
               </h5>
-              <Row>
-                <Col md={{ span: 6, offset: 0 }} className="text-center mt-4">
-                    <Button
-                      className="mb-4 px-3 py-2"
-                      variant="success"
-                      disabled={this.props.selectedAddress === undefined}
-                      onClick={this.props.optIn}
-                    >
-                      Opt In
-                    </Button>
-                  </Col>
-                  <Col md={{ span: 4, offset: 0 }} className="text-center mt-4">
-                    <Button
-                      className="mb-4 px-3 py-2"
-                      variant="danger"
-                      disabled={this.props.selectedAddress === undefined}
-                      onClick={this.props.optOut}
-                    >
-                      Opt Out
-                    </Button>
-                  </Col>
-                  </Row>
-                <p className="agreement-text">
+            </Col>
+          </Row>
+          <Row>
+            <Col md={{ span: 4, offset: 1 }} className="text-center mt-4">
+              <Button
+                className="mb-4 px-3 py-2"
+                variant="success"
+                disabled={this.props.selectedAddress === undefined}
+                onClick={this.props.optIn}
+              >
+                Opt In
+              </Button>
+            </Col>
+            <Col md={{ span: 4, offset: 2 }} className="text-center mt-4">
+              <Button
+                className="mb-4 px-3 py-2"
+                variant="danger"
+                disabled={this.props.selectedAddress === undefined}
+                onClick={this.props.optOut}
+              >
+                Opt Out
+              </Button>
+            </Col>
+          </Row>
+          <Row>
+            <Col md={{ span: 10, offset: 1 }}>
+              <p className="agreement-text">
                 If you do not opt-in or out, you are still a member of the OG DAO. You still have the same voting power, however you will not receive airdrops, payments, or other benefits. This to protect the OG DAO, it’s members, and assets.
-              </p><br/>
+              </p>
+              <br/>
             </Col>
           </Row>
         </div>
@@ -115,14 +120,6 @@ class Agreement extends Component {
                 })}
               </tbody>
             </table>
-            <Button
-              className="mt-3 mb-5 px-3 py-2"
-              variant="success"
-              disabled={this.props.selectedAddress === undefined}
-              onClick={this.props.optIn}
-            >
-              Opt In
-            </Button>
           </Col>
           <Col md={{ span: 4, offset: 2 }} className="text-center mt-4">
             <table className="table table-bordered my-4">
@@ -143,14 +140,6 @@ class Agreement extends Component {
                 })}
               </tbody>
             </table>
-            <Button
-              className="mt-3 mb-5 px-3 py-2"
-              variant="danger"
-              disabled={this.props.selectedAddress === undefined}
-              onClick={this.props.optOut}
-            >
-              Opt Out
-            </Button>
           </Col>
         </Row>
       </Container>

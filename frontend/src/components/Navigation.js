@@ -21,7 +21,7 @@ class Navigation extends Component {
           <Navbar.Collapse>
             <Nav className="me-auto">
               <Nav.Item>
-                <Nav.Link className="px-4 disabled" href="/">
+                <Nav.Link className="px-4" href="/agreement">
                   Participation Agreement
                 </Nav.Link>
               </Nav.Item>
