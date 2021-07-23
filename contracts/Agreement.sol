@@ -7,17 +7,19 @@ pragma solidity ^0.8.0;
  *  ██─▄█▀██─▄─▀█─██─█─██▄─████─██─██─▀─██─██─█
  *  ▀▄▄▄▄▄▀▄▄▄▄▀▀▄▄▄▄▀▄▄▄▄▄▀▀▀▄▄▄▄▀▀▄▄▀▄▄▀▄▄▄▄▀
  *
+ *  Participation Agreement
+ *  Please read this participation "agreement" carefully before confirming your intent to be bound by it and participating in the OG DAO. This agreement includes the terms of participation in the OG DAO. You understand, agree and confirm that:
+ *    1. The OG DAO is an experiment in the field of decentralized governance structures, in which participation is entirely at your own risk;
+ *    2. This agreement has legal consequences and by entering into this agreement you release all rights, claims, or other causes of action whether in equity or law you may have against OG DAO service providers or other OG DAO participants. You also agree to waive and limit any potential liability of OG DAO service providers or other OG DAO participants;
+ *    3. You are sophisticated and have sufficient technical understanding of the functionality, usage, storage, transmission mechanisms, and intricacies associated with cryptographic tokens, token storage facilities (including wallets), blockchain technology, and blockchain-based software systems.
+ *  
  *  There are 2 options;
  *  a.) I, the owner of this address, Opt-out completely from the OG DAO.
  *  b.) I, the owner of this address, Opt-in to the OG DAO. I have read and agreed to the participation agreement below.
  *
  *  If you do not opt-in or out, you are still a member of the OG DAO. You still have the same voting power, however you will not receive airdrops, payments, or other benefits. This to protect the OG DAO, it’s members, and assets.
  *
- *  Participation Agreement
- *  Please read this participation "agreement" carefully before confirming your intent to be bound by it and participating in the OG DAO. This agreement includes the terms of participation in the OG DAO. You understand, agree and confirm that:
- *    1. The OG DAO is an experiment in the field of decentralized governance structures, in which participation is entirely at your own risk;
- *    2. This agreement has legal consequences and by entering into this agreement you release all rights, claims, or other causes of action whether in equity or law you may have against OG DAO service providers or other OG DAO participants. You also agree to waive and limit any potential liability of OG DAO service providers or other OG DAO participants;
- *    3. You are sophisticated and have sufficient technical understanding of the functionality, usage, storage, transmission mechanisms, and intricacies associated with cryptographic tokens, token storage facilities (including wallets), blockchain technology, and blockchain-based software systems.
+ 
  */
 
 import "@openzeppelin/contracts/access/AccessControl.sol";
