@@ -29,11 +29,13 @@ contract Agreement is AccessControl, Ownable {
     uint256   public totalAccounts = 0;
     address[] public optedInAccounts;
     address[] public optedOutAccounts;
+    bool      public contractActive;
 
     mapping (address => bool) public optIn;
     mapping (address => bool) public optOut;
 
     constructor() {
+      contractActive = true;
       _setupRole(DEFAULT_ADMIN_ROLE, msg.sender);
       _setupRole("OG", msg.sender);
     }
@@ -45,6 +47,7 @@ contract Agreement is AccessControl, Ownable {
     }
 
     function optInToDAO() public onlyMember {
+      require(contractActive, "The contract no longer allows opt-ins");
       require(!optIn[msg.sender] && !optOut[msg.sender], "You have already voted");
 
       totalAccounts += 1;
@@ -62,6 +65,7 @@ contract Agreement is AccessControl, Ownable {
       totalAccounts += 1;
       optOut[msg.sender] = true;
       optedOutAccounts.push(msg.sender);
+      leaveCommunity();
     }
 
     function fetchOptedOutAccounts() public view returns (address[] memory) {
@@ -100,5 +104,15 @@ contract Agreement is AccessControl, Ownable {
     // @dev Remove oneself as a member of the community.
     function leaveCommunity() public virtual {
       renounceRole("OG", msg.sender);
+    }
+
+    function activationSwitch() public onlyOwner returns (string memory) {
+      if (contractActive) {
+        contractActive = false;
+        return "Contract has been Deactivated";
+      } else {
+          contractActive = true;
+          return "Contract has been Activated";
+      }
     }
 }
