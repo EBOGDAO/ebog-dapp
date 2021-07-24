@@ -2,10 +2,10 @@
 pragma solidity ^0.8.0;
 
 /**
- *  ██████████████████████▀████████████████████
- *  █▄─▄▄─█▄─▄─▀█─▄▄─█─▄▄▄▄███▄─▄▄▀██▀▄─██─▄▄─█
- *  ██─▄█▀██─▄─▀█─██─█─██▄─████─██─██─▀─██─██─█
- *  ▀▄▄▄▄▄▀▄▄▄▄▀▀▄▄▄▄▀▄▄▄▄▄▀▀▀▄▄▄▄▀▀▄▄▀▄▄▀▄▄▄▄▀
+ *  ██████████▀████████████████████
+ *  █─▄▄─█─▄▄▄▄███▄─▄▄▀██▀▄─██─▄▄─█
+ *  █─██─█─██▄─████─██─██─▀─██─██─█
+ *  ▀▄▄▄▄▀▄▄▄▄▄▀▀▀▄▄▄▄▀▀▄▄▀▄▄▀▄▄▄▄▀
  *
  *  Agreement Terms
  *  Please read this participation "agreement" carefully before confirming your intent to be bound by it and participating in the OG DAO. This agreement includes the terms of participation in the OG DAO. You understand, agree and confirm that:
