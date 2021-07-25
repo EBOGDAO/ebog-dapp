@@ -29,13 +29,12 @@ contract Agreement is AccessControl, Ownable {
     uint256   public totalAccounts = 0;
     address[] public optedInAccounts;
     address[] public optedOutAccounts;
-    bool      public contractActive;
+    bool      public contractActive = true;
 
     mapping (address => bool) public optIn;
     mapping (address => bool) public optOut;
 
     constructor() {
-      contractActive = true;
       _setupRole(DEFAULT_ADMIN_ROLE, msg.sender);
       _setupRole("OG", msg.sender);
     }
