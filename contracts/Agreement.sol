@@ -106,13 +106,7 @@ contract Agreement is AccessControl, Ownable {
       renounceRole("OG", msg.sender);
     }
 
-    function activationSwitch() public onlyOwner returns (string memory) {
-      if (contractActive) {
-        contractActive = false;
-        return "Contract has been Deactivated";
-      } else {
-          contractActive = true;
-          return "Contract has been Activated";
-      }
+    function activationSwitch() public onlyOwner {
+      contractActive = !contractActive;
     }
 }
