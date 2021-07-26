@@ -6,7 +6,7 @@
     "test": "test"
   },
   "scripts": {
-    "start": "cd frontend && npm start",
+    "postinstall": "npm install --prefix ./frontend",
     "test": "hardhat test"
   },
   "repository": {
