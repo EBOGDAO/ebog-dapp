@@ -2,10 +2,10 @@
 pragma solidity ^0.8.0;
 
 /**
- *  ██████████████████████▀████████████████████
- *  █▄─▄▄─█▄─▄─▀█─▄▄─█─▄▄▄▄███▄─▄▄▀██▀▄─██─▄▄─█
- *  ██─▄█▀██─▄─▀█─██─█─██▄─████─██─██─▀─██─██─█
- *  ▀▄▄▄▄▄▀▄▄▄▄▀▀▄▄▄▄▀▄▄▄▄▄▀▀▀▄▄▄▄▀▀▄▄▀▄▄▀▄▄▄▄▀
+ *  ██████████▀████████████████████
+ *  █─▄▄─█─▄▄▄▄███▄─▄▄▀██▀▄─██─▄▄─█
+ *  █─██─█─██▄─████─██─██─▀─██─██─█
+ *  ▀▄▄▄▄▀▄▄▄▄▄▀▀▀▄▄▄▄▀▀▄▄▀▄▄▀▄▄▄▄▀
  *
  *  Agreement Terms
  *  Please read this participation "agreement" carefully before confirming your intent to be bound by it and participating in the OG DAO. This agreement includes the terms of participation in the OG DAO. You understand, agree and confirm that:
@@ -29,6 +29,7 @@ contract Agreement is AccessControl, Ownable {
     uint256   public totalAccounts = 0;
     address[] public optedInAccounts;
     address[] public optedOutAccounts;
+    bool      public contractActive = true;
 
     mapping (address => bool) public optIn;
     mapping (address => bool) public optOut;
@@ -45,6 +46,7 @@ contract Agreement is AccessControl, Ownable {
     }
 
     function optInToDAO() public onlyMember {
+      require(contractActive, "The contract no longer allows opt-ins");
       require(!optIn[msg.sender] && !optOut[msg.sender], "You have already voted");
 
       totalAccounts += 1;
@@ -62,6 +64,7 @@ contract Agreement is AccessControl, Ownable {
       totalAccounts += 1;
       optOut[msg.sender] = true;
       optedOutAccounts.push(msg.sender);
+      leaveCommunity();
     }
 
     function fetchOptedOutAccounts() public view returns (address[] memory) {
@@ -100,5 +103,9 @@ contract Agreement is AccessControl, Ownable {
     // @dev Remove oneself as a member of the community.
     function leaveCommunity() public virtual {
       renounceRole("OG", msg.sender);
+    }
+
+    function activationSwitch() public onlyOwner {
+      contractActive = !contractActive;
     }
 }
