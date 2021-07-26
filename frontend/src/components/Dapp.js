@@ -21,8 +21,8 @@ import Footer from "./Footer";
 import "../stylesheets/Dapp.scss";
 // NETWORKS
 // const MAINNET_NETWORK_ID = '1';
-// const RINKEBY_NETWORK_ID = '4';
-const HARDHAT_NETWORK_ID = '1337';
+const RINKEBY_NETWORK_ID = '4';
+// const HARDHAT_NETWORK_ID = '1337';
 // CONSTANTS
 const MEMBERS = [
   "0x70997970c51812dc3a010c7d01b50e0d17dc79c8",
@@ -290,12 +290,12 @@ export class Dapp extends React.Component {
   }
 
   _checkNetwork() {
-    if (window.ethereum.networkVersion === HARDHAT_NETWORK_ID) {
+    if (window.ethereum.networkVersion === RINKEBY_NETWORK_ID) {
       return true;
     }
 
     this.setState({
-      networkError: 'Please connect Metamask to Localhost:8545'
+      networkError: 'Please connect Metamask to Rinkeby Testnet'
     });
 
     return false;

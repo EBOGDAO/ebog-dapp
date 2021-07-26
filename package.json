@@ -6,6 +6,7 @@
     "test": "test"
   },
   "scripts": {
+    "start": "cd frontend && npm start",
     "test": "hardhat test"
   },
   "repository": {
