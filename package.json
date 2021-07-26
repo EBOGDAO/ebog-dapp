@@ -6,7 +6,7 @@
     "test": "test"
   },
   "scripts": {
-    "start": "npx hardhat node && cd frontend && npm start",
+    "start": "cd frontend && npm start",
     "test": "hardhat test"
   },
   "repository": {
