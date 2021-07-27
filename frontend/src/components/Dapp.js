@@ -6,6 +6,7 @@ import { Container } from "react-bootstrap";
 import TokenArtifact from "../contracts/Token.json";
 import AgreementArtifact from "../contracts/Agreement.json";
 import contractAddress from "../contracts/contract-address.json";
+import { MEMBERS } from "../utils/members";
 // Components
 import { NoWalletDetected } from "./NoWalletDetected";
 import { ConnectWallet } from "./ConnectWallet";
@@ -23,28 +24,10 @@ import "../stylesheets/Dapp.scss";
 // const MAINNET_NETWORK_ID = '1';
 const RINKEBY_NETWORK_ID = '4';
 // const HARDHAT_NETWORK_ID = '1337';
-// CONSTANTS
-const MEMBERS = [
-  "0x70997970c51812dc3a010c7d01b50e0d17dc79c8",
-  "0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc",
-  "0x90f79bf6eb2c4f870365e785982e1f101e93b906",
-  "0x15d34aaf54267db7d7c367839aaf71a00a2c6a65",
-  "0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc",
-  "0x976ea74026e726554db657fa54763abd0c3a0aa9",
-  "0x14dc79964da2c08b23698b3d3cc7ca32193d9955",
-  "0xa0ee7a142d267c1f36714e4a8f75612f20a79720",
-  "0xbcd4042de499d14e55001ccbb24a551f3b954096"
-]
 
 // This is an error code that indicates that the user canceled a transaction
 const ERROR_CODE_TX_REJECTED_BY_USER = 4001;
 
-// This component is in charge of doing these things:
-//   1. It connects to the user's wallet
-//   2. Initializes ethers and the Token contract
-//   3. Polls the user balance to keep it updated.
-//   4. Transfers tokens by sending transactions
-//   5. Renders the whole application
 export class Dapp extends React.Component {
   constructor(props) {
     super(props);
@@ -83,7 +66,6 @@ export class Dapp extends React.Component {
 
     // We reset the dapp state if the network is changed
     window.ethereum.on("chainChanged", ([networkId]) => {
-      this._stopPollingData();
       this._resetState();
     });
   }
@@ -94,9 +76,6 @@ export class Dapp extends React.Component {
     this.setState({
       selectedAddress: ethers.utils.getAddress(userAddress),
     });
-
-    // Then, we initialize ethers, fetch the token's data, and start polling
-    // for the user's balance.
 
     // Fetching the token data and the user's balance are specific to this
     // sample project, but you can reuse the same initialization pattern.

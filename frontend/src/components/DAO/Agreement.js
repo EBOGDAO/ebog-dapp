@@ -10,7 +10,7 @@ class Agreement extends Component {
           <Col md={12}>
             <img
               className="stamp mb-3"
-              src="logos/og-dao-v2.png"
+              src="logos/og-dao.png"
               title="OG DAO"
               alt="OG DAO"
             />

@@ -11,7 +11,7 @@ class Navigation extends Component {
             <Nav.Link className="disabled" href="/">
               <img
                 className="logo"
-                src="logos/og-dao-v2.png"
+                src="logos/og-dao.png"
                 title="OG DAO"
                 alt="OG DAO"
               />
@@ -21,8 +21,13 @@ class Navigation extends Component {
           <Navbar.Collapse>
             <Nav className="me-auto">
               <Nav.Item>
+                <Nav.Link className="px-4" href="/">
+                  Tutorial
+                </Nav.Link>
+              </Nav.Item>
+              <Nav.Item>
                 <Nav.Link className="px-4" href="/agreement">
-                  Participation Agreement
+                  Agreement
                 </Nav.Link>
               </Nav.Item>
             </Nav>
