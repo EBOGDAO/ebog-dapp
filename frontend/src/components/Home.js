@@ -7,9 +7,10 @@ class Home extends Component {
     return (
       <Container className="d-flex justify-content-center">
         <Row>
-          <Col className="text-center mt-5">
+          <Col className="text-center my-5">
+            <h1>Welcome</h1>
             <video
-              className="my-5"
+              className="mt-3 mb-5"
               style={{ border: "5px solid #000", height: "auto", width: "75%" }}
               src="/tutorial.mp4"
               controls
