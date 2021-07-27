@@ -34,6 +34,7 @@
     "solc": "^0.8.0"
   },
   "dependencies": {
-    "@openzeppelin/contracts": "^4.2.0"
+    "@openzeppelin/contracts": "^4.2.0",
+    "dotenv": "^10.0.0"
   }
 }
