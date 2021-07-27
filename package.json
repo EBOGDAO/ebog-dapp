@@ -6,7 +6,6 @@
     "test": "test"
   },
   "scripts": {
-    "postinstall": "npm install --prefix ./frontend",
     "test": "hardhat test"
   },
   "repository": {
