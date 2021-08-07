@@ -23,7 +23,6 @@ pragma solidity ^0.8.0;
 
 import "@openzeppelin/contracts/access/AccessControl.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
-import "hardhat/console.sol";
 
 contract Agreement is AccessControl, Ownable {
     uint256   public totalAccounts = 0;
@@ -39,13 +38,7 @@ contract Agreement is AccessControl, Ownable {
       _setupRole("OG", msg.sender);
     }
 
-    // @dev Restricted to members of the community.
-    modifier onlyMember() {
-      require(isMember(msg.sender), "Restricted to members.");
-      _;
-    }
-
-    function optInToDAO() public onlyMember {
+    function optInToDAO() public onlyRole("OG") {
       require(contractActive, "The contract no longer allows opt-ins");
       require(!optIn[msg.sender] && !optOut[msg.sender], "You have already voted");
 
@@ -58,7 +51,7 @@ contract Agreement is AccessControl, Ownable {
       return optedInAccounts;
     }
 
-    function optOutOfDAO() public onlyMember {
+    function optOutOfDAO() public onlyRole("OG") {
       require(!optIn[msg.sender] && !optOut[msg.sender], "You have already voted");
 
       totalAccounts += 1;
@@ -71,8 +64,7 @@ contract Agreement is AccessControl, Ownable {
       return optedOutAccounts;
     }
 
-    function getAddressStatus(address _address) public view returns (string memory) {
-      require(isMember(msg.sender), "Restricted to members.");
+    function getAddressStatus(address _address) public view onlyRole("OG") returns (string memory) {
 
       if (optIn[_address]) {
         return "This address voted to Opt In";
