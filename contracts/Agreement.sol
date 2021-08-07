@@ -64,7 +64,7 @@ contract Agreement is AccessControl, Ownable {
       return optedOutAccounts;
     }
 
-    function getAddressStatus(address _address) public view onlyRole("OG") returns (string memory) {
+    function getAddressStatus(address _address) public view returns (string memory) {
 
       if (optIn[_address]) {
         return "This address voted to Opt In";
