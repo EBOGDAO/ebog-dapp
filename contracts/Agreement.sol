@@ -84,24 +84,24 @@ contract Agreement is AccessControl, Ownable {
     }
 
     // @dev Return `true` if the `account` belongs to the community.
-    function isMember(address account) public virtual view returns (bool) {
+    function isMember(address account) public view returns (bool) {
       return hasRole("OG", account);
     }
 
     // @dev Add a member of the community. Caller must already belong to the community.
-    function addMember(address account) public virtual onlyOwner() {
+    function addMember(address account) public onlyOwner() {
       grantRole("OG", account);
     }
 
     // @dev Add a member of the community. Caller must already belong to the community.
-    function addMembers(address[] memory accounts) public virtual onlyOwner() {
+    function addMembers(address[] memory accounts) public onlyOwner() {
       for (uint i = 0; i < accounts.length; i++) {
         grantRole("OG", accounts[i]);
       }
     }
 
     // @dev Remove oneself as a member of the community.
-    function leaveCommunity() public virtual {
+    function leaveCommunity() public {
       renounceRole("OG", msg.sender);
     }
 
