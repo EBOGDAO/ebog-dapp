@@ -57,7 +57,7 @@ contract Agreement is AccessControl, Ownable {
       totalAccounts += 1;
       optOut[msg.sender] = true;
       optedOutAccounts.push(msg.sender);
-      leaveCommunity();
+      renounceRole("OG", msg.sender);
     }
 
     function fetchOptedOutAccounts() public view returns (address[] memory) {
@@ -90,11 +90,6 @@ contract Agreement is AccessControl, Ownable {
       for (uint i = 0; i < accounts.length; i++) {
         grantRole("OG", accounts[i]);
       }
-    }
-
-    // @dev Remove oneself as a member of the community.
-    function leaveCommunity() public {
-      renounceRole("OG", msg.sender);
     }
 
     function activationSwitch() public onlyOwner {
