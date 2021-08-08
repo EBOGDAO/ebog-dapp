@@ -23,7 +23,6 @@ pragma solidity ^0.8.0;
 
 import "@openzeppelin/contracts/access/AccessControl.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
-import "hardhat/console.sol";
 
 contract Agreement is AccessControl, Ownable {
     uint256   public totalAccounts = 0;
@@ -39,13 +38,7 @@ contract Agreement is AccessControl, Ownable {
       _setupRole("OG", msg.sender);
     }
 
-    // @dev Restricted to members of the community.
-    modifier onlyMember() {
-      require(isMember(msg.sender), "Restricted to members.");
-      _;
-    }
-
-    function optInToDAO() public onlyMember {
+    function optInToDAO() public onlyRole("OG") {
       require(contractActive, "The contract no longer allows opt-ins");
       require(!optIn[msg.sender] && !optOut[msg.sender], "You have already voted");
 
@@ -58,13 +51,13 @@ contract Agreement is AccessControl, Ownable {
       return optedInAccounts;
     }
 
-    function optOutOfDAO() public onlyMember {
+    function optOutOfDAO() public onlyRole("OG") {
       require(!optIn[msg.sender] && !optOut[msg.sender], "You have already voted");
 
       totalAccounts += 1;
       optOut[msg.sender] = true;
       optedOutAccounts.push(msg.sender);
-      leaveCommunity();
+      renounceRole("OG", msg.sender);
     }
 
     function fetchOptedOutAccounts() public view returns (address[] memory) {
@@ -72,7 +65,6 @@ contract Agreement is AccessControl, Ownable {
     }
 
     function getAddressStatus(address _address) public view returns (string memory) {
-      require(isMember(msg.sender), "Restricted to members.");
 
       if (optIn[_address]) {
         return "This address voted to Opt In";
@@ -84,25 +76,20 @@ contract Agreement is AccessControl, Ownable {
     }
 
     // @dev Return `true` if the `account` belongs to the community.
-    function isMember(address account) public virtual view returns (bool) {
+    function isMember(address account) public view returns (bool) {
       return hasRole("OG", account);
     }
 
     // @dev Add a member of the community. Caller must already belong to the community.
-    function addMember(address account) public virtual onlyOwner() {
+    function addMember(address account) public onlyOwner() {
       grantRole("OG", account);
     }
 
     // @dev Add a member of the community. Caller must already belong to the community.
-    function addMembers(address[] memory accounts) public virtual onlyOwner() {
+    function addMembers(address[] memory accounts) public onlyOwner() {
       for (uint i = 0; i < accounts.length; i++) {
         grantRole("OG", accounts[i]);
       }
-    }
-
-    // @dev Remove oneself as a member of the community.
-    function leaveCommunity() public virtual {
-      renounceRole("OG", msg.sender);
     }
 
     function activationSwitch() public onlyOwner {
