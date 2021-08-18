@@ -2,7 +2,7 @@ const { expect } = require("chai");
 
 describe("Agreement", function () {
   let Agreement, contract;
-  let admin, creator, owner, collector, addresses;
+  let admin, member, addresses;
   let transaction, error;
 
   beforeEach(async function () {
@@ -16,10 +16,10 @@ describe("Agreement", function () {
   describe("deployment", function () {
     it("should assign admin and og member roles", async function () {
       let owner = await contract.owner();
-      let member = await contract.isMember(admin.address);
+      let memberRole = await contract.isMember(admin.address);
 
       expect(admin.address).to.equal(owner);
-      expect(member).to.equal(true);
+      expect(memberRole).to.equal(true);
     });
   });
 
