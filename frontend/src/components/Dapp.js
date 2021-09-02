@@ -22,7 +22,8 @@ import Footer from "./Footer";
 import "../stylesheets/Dapp.scss";
 // NETWORKS
 // const MAINNET_NETWORK_ID = '1';
-const RINKEBY_NETWORK_ID = '4';
+// const RINKEBY_NETWORK_ID = '4';
+const POLYGON_NETWORK_ID = '137';
 // const HARDHAT_NETWORK_ID = '1337';
 
 // This is an error code that indicates that the user canceled a transaction
@@ -269,12 +270,12 @@ export class Dapp extends React.Component {
   }
 
   _checkNetwork() {
-    if (window.ethereum.networkVersion === RINKEBY_NETWORK_ID) {
+    if (window.ethereum.networkVersion === POLYGON_NETWORK_ID) {
       return true;
     }
 
     this.setState({
-      networkError: 'Please connect Metamask to Rinkeby Testnet'
+      networkError: 'Please connect Metamask to Polygon Network'
     });
 
     return false;
