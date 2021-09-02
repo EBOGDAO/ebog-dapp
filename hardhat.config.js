@@ -10,9 +10,9 @@ module.exports = {
   networks: {
     hardhat: {
       chainId: 1337,
-      forking: {
-        url: "https://eth-rinkeby.alchemyapi.io/v2/" + `${process.env.ALCHEMY_API_KEY}`
-      }
+      // forking: {
+      //   url: "https://eth-rinkeby.alchemyapi.io/v2/" + `${process.env.ALCHEMY_API_KEY}`
+      // }
     },
     rinkeby: {
       url: "https://eth-rinkeby.alchemyapi.io/v2/" + `${process.env.ALCHEMY_API_KEY}`,
